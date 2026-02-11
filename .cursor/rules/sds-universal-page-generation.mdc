@@ -16,4 +16,8 @@ alwaysApply: true
 - Use `var(--sds-*)` tokens for visual decisions.
 - Run `docs/qa/sds-page-audit-checklist.md` and ensure final `knownGaps` is empty.
 - Never deliver standalone raw `.html` page outputs.
+- Keep page contract artifacts in sync:
+  - `docs/specs/<page-name>.page-spec.json`
+  - `docs/recipes/<page-name>.catalog.json`
+  - `docs/qa/<page-name>-audit.md`
 

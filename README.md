@@ -37,3 +37,4 @@ Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma p
 - PR template enforcing SDS traceability: `.github/pull_request_template.md`
 - CI contract validator: `.github/workflows/ds-contract.yml`
 - Delivery mode: React-only (`.tsx`), no standalone page `.html` + root `.css`
+- Page contract bundle required for each page (`tsx` + `css` + spec + recipe + audit)

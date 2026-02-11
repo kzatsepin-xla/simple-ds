@@ -20,11 +20,13 @@
 - Recipe file:
 - PageSpec file:
 - Resolver result (`scripts/resolve_recipe.py`):
+- Audit file (`docs/qa/<page>-audit.md`):
 
 ### SDS compliance checklist (required)
 
 - [ ] Uses SDS components (`src/components`) instead of duplicate primitives
 - [ ] Page implementation is React (`.tsx`), no standalone `.html` + root `.css`
+- [ ] Single-page heading hierarchy is valid (single effective `h1`)
 - [ ] Uses `var(--sds-*)` tokens for visual values
 - [ ] Responsive behavior matches Composition/Sections recipe
 - [ ] Forms follow fieldset/state model from SDS rules

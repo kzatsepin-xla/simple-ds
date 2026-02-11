@@ -112,7 +112,11 @@ def validate_recipe_object(data: dict, rel_path: str) -> bool:
 
 def validate_react_only_delivery() -> bool:
     ok = True
-    forbidden_html = list(ROOT.glob("*.html")) + list(ROOT.glob("*.htm"))
+    forbidden_html = [
+        p
+        for p in (list(ROOT.glob("*.html")) + list(ROOT.glob("*.htm")))
+        if p.name.lower() != "index.html"
+    ]
     forbidden_css = list(ROOT.glob("*.css"))
 
     for path in sorted(forbidden_html):
@@ -128,6 +132,15 @@ def validate_react_only_delivery() -> bool:
     return ok
 
 
+def page_base_name(page_path: Path) -> str:
+    """Convert `GameWebshopPage.tsx` -> `game-webshop`."""
+    stem = page_path.stem
+    if stem.endswith("Page"):
+        stem = stem[:-4]
+    kebab = re.sub(r"(?<!^)(?=[A-Z])", "-", stem).lower()
+    return kebab
+
+
 def find_page_files() -> list[Path]:
     candidates: list[Path] = []
     patterns = [
@@ -140,6 +153,34 @@ def find_page_files() -> list[Path]:
     return sorted({path for path in candidates if "src/components/" not in path.as_posix()})
 
 
+def validate_page_contract_files() -> bool:
+    page_files = find_page_files()
+    if not page_files:
+        print("Validated page contract files: 0 (no page files found; skipped)")
+        return True
+
+    ok = True
+    for page_file in page_files:
+        base = page_base_name(page_file)
+        rel_page = page_file.relative_to(ROOT).as_posix()
+
+        expected_css = page_file.with_suffix(".css")
+        expected_spec = ROOT / "docs" / "specs" / f"{base}.page-spec.json"
+        expected_recipe = ROOT / "docs" / "recipes" / f"{base}.catalog.json"
+        expected_audit = ROOT / "docs" / "qa" / f"{base}-audit.md"
+
+        for expected in [expected_css, expected_spec, expected_recipe, expected_audit]:
+            if not expected.exists():
+                fail(
+                    f"{rel_page}: missing required page contract file "
+                    f"{expected.relative_to(ROOT).as_posix()}"
+                )
+                ok = False
+
+    print(f"Validated page contract files: {len(page_files)}")
+    return ok
+
+
 def validate_react_pages_use_ds() -> bool:
     page_files = find_page_files()
     if not page_files:
@@ -149,6 +190,11 @@ def validate_react_pages_use_ds() -> bool:
     ok = True
     raw_control_pattern = re.compile(r"<\s*(button|input|select|textarea)\b", re.IGNORECASE)
     ds_import_pattern = re.compile(r"from\s+['\"][^'\"]*components[^'\"]*['\"]")
+    h1_pattern = re.compile(r"<\s*h1\b", re.IGNORECASE)
+    title_page_component_pattern = re.compile(
+        r"<[A-Za-z0-9_]*Text[^>]*variant=\"titlePage\"[^>]*>",
+        re.IGNORECASE,
+    )
 
     for path in page_files:
         rel = path.relative_to(ROOT).as_posix()
@@ -162,7 +208,55 @@ def validate_react_pages_use_ds() -> bool:
             fail(f"{rel}: no components import detected; page must compose SDS components")
             ok = False
 
+        explicit_h1_count = len(h1_pattern.findall(text))
+        if explicit_h1_count > 1:
+            fail(f"{rel}: multiple <h1> tags detected")
+            ok = False
+
+        title_page_nodes = title_page_component_pattern.findall(text)
+        title_page_without_as = sum(1 for node in title_page_nodes if " as=" not in node and " as =" not in node)
+        if title_page_without_as > 1:
+            fail(
+                f"{rel}: multiple titlePage text components without explicit `as` prop "
+                "(default becomes multiple h1)"
+            )
+            ok = False
+
     print(f"Validated page TSX files: {len(page_files)}")
+    return ok
+
+
+def validate_page_css_composition() -> bool:
+    page_files = find_page_files()
+    if not page_files:
+        print("Validated page CSS composition: 0 (no page files found; skipped)")
+        return True
+
+    ok = True
+    required_patterns = [
+        re.compile(r"1200px|max-width:\s*1200", re.IGNORECASE),
+        re.compile(r"768px|max-width:\s*768", re.IGNORECASE),
+        re.compile(r"375px|max-width:\s*375", re.IGNORECASE),
+        re.compile(r"1152px|720px|327px", re.IGNORECASE),
+        re.compile(r"24px|space-600|padding-xl", re.IGNORECASE),
+    ]
+
+    for page_file in page_files:
+        css_file = page_file.with_suffix(".css")
+        rel = css_file.relative_to(ROOT).as_posix()
+        if not css_file.exists():
+            # covered by validate_page_contract_files
+            continue
+        css_text = css_file.read_text(encoding="utf-8")
+        for pattern in required_patterns:
+            if not pattern.search(css_text):
+                fail(
+                    f"{rel}: missing composition invariant for pattern `{pattern.pattern}` "
+                    "(check container widths/gutters/content math)"
+                )
+                ok = False
+
+    print(f"Validated page CSS composition: {len(page_files)}")
     return ok
 
 
@@ -202,7 +296,9 @@ def main() -> int:
         require_files(),
         validate_recipes(),
         validate_react_only_delivery(),
+        validate_page_contract_files(),
         validate_react_pages_use_ds(),
+        validate_page_css_composition(),
     ]
     if all(checks):
         print("SDS contract validation passed.")

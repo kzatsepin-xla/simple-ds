@@ -20,4 +20,11 @@ This repository uses strict design-system generation rules.
 - No standalone page deliverables in raw `.html` + custom root `.css`.
 - `knownGaps` is empty for final recipe deliverables.
 - Page files (`src/pages|src/app|src/screens`) do not use raw control tags directly.
+- Every page has a full contract bundle:
+  - `src/pages/<PageName>.tsx`
+  - `src/pages/<PageName>.css`
+  - `docs/specs/<page-name>.page-spec.json`
+  - `docs/recipes/<page-name>.catalog.json`
+  - `docs/qa/<page-name>-audit.md`
+- Framework entry `index.html` is allowed; additional standalone HTML pages are not.
 

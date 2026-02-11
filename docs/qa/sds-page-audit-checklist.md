@@ -8,10 +8,12 @@ Use this checklist before considering any page/block implementation complete.
 - [ ] Canvas/page node IDs recorded
 - [ ] Recipe/variant names recorded for desktop and mobile
 - [ ] Section sequence mapped to SDS section families
+- [ ] Page contract bundle exists (`tsx`, `css`, spec, recipe, audit files)
 
 ## 2) Composition fidelity
 
 - [ ] Container width and gutters match Composition guide
+- [ ] Content width math matches Composition guide (desktop/tablet/mobile)
 - [ ] Desktop/tablet/mobile behavior matches selected recipe
 - [ ] No contradictory breakpoint logic
 
@@ -21,6 +23,7 @@ Use this checklist before considering any page/block implementation complete.
 - [ ] Form controls use SDS state/variant model
 - [ ] Text uses SDS text variants
 - [ ] Implementation is React-based (`.tsx`), not standalone raw `.html` page delivery
+- [ ] Heading hierarchy is valid (single effective `h1`)
 
 ## 4) Token fidelity
 
