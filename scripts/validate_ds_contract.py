@@ -19,6 +19,7 @@ REQUIRED_FILES = [
     ".cursor/rules/sds-no-assumptions-gate.mdc",
     ".cursor/rules/sds-component-usage-enforcement.mdc",
     ".cursor/rules/sds-universal-page-generation.mdc",
+    ".cursor/rules/sds-designer-friendly-prompts.mdc",
     "AGENTS.md",
     "docs/qa/sds-page-audit-checklist.md",
     "docs/recipes/page-recipe.schema.json",

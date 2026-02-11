@@ -1,0 +1,23 @@
+---
+description: Designer-friendly prompt mode with automatic defaults and hidden SDS pipeline
+alwaysApply: true
+---
+
+# SDS Designer-Friendly Prompt Mode
+
+- Treat short, non-technical prompts as valid page requests.
+- Do not require users to mention internal terms like `PageSpec`, `recipe`, `audit`, or `contract`.
+- For general prompts like "Create a page", apply defaults:
+  - `pageType`: `landing`
+  - `platforms`: `desktop` + `mobile`
+  - `dataDensity`: `medium`
+  - `constraints`: `a11y=true`, `seo=true`, `perf=true`, `i18n=true`
+  - language/content locale: repository default unless user specifies otherwise
+- Internally always run the full SDS pipeline:
+  1) normalize prompt to `PageSpec`
+  2) resolve recipe
+  3) implement React page with SDS components and tokens
+  4) run audit and contract checks
+- If intent is ambiguous, ask at most one concise clarification; otherwise proceed with defaults.
+- Keep user communication simple and human-readable, while preserving strict SDS compliance under the hood.
+

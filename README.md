@@ -29,6 +29,7 @@ Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma p
 
 - Agent operating contract: `AGENTS.md`
 - Universal page generation rule: `.cursor/rules/sds-universal-page-generation.mdc`
+- Designer-friendly prompt mode: `.cursor/rules/sds-designer-friendly-prompts.mdc`
 - Prompt normalization schema: `docs/specs/page-spec.schema.json`
 - Recipe resolver: `scripts/resolve_recipe.py`
 - Recipe format and workflow: `docs/recipes/README.md`
@@ -38,3 +39,13 @@ Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma p
 - CI contract validator: `.github/workflows/ds-contract.yml`
 - Delivery mode: React-only (`.tsx`), no standalone page `.html` + root `.css`
 - Page contract bundle required for each page (`tsx` + `css` + spec + recipe + audit)
+
+## For Designers
+
+You can use short prompts without technical terms, for example:
+
+- `Собери страницу каталога игр`
+- `Сделай страницу продукта для мобильного и десктопа`
+- `Создай лендинг для AI-чата`
+
+The system applies defaults and still runs the full SDS compliance pipeline automatically.
