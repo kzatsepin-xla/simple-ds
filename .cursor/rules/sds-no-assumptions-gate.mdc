@@ -10,8 +10,9 @@ alwaysApply: true
   - `fileKey`,
   - page/canvas `nodeId`,
   - recipe/variant node names used.
-- If `get_design_context` is unavailable, use only verifiable `metadata` facts and mark unknowns as `TODO` instead of assumptions.
+- If `get_design_context` is unavailable, use only verifiable `metadata` facts and stop when critical facts are missing.
 - Before finalizing, run a self-audit against `docs/qa/sds-page-audit-checklist.md`.
 - A build is invalid if any checklist item is `FAIL`.
 - If no matching recipe exists, create a new recipe doc in `docs/recipes/` first, then implement.
+- For final deliverables, `knownGaps` in recipe files must be empty.
 

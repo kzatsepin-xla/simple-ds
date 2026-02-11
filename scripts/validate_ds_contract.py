@@ -93,6 +93,33 @@ def validate_recipe_object(data: dict, rel_path: str) -> bool:
         fail(f"{rel_path}: platforms must only contain desktop/tablet/mobile")
         ok = False
 
+    if "knownGaps" in data:
+        known_gaps = data.get("knownGaps")
+        if not isinstance(known_gaps, list):
+            fail(f"{rel_path}: knownGaps must be an array when present")
+            ok = False
+        elif len(known_gaps) > 0:
+            fail(f"{rel_path}: knownGaps must be empty for final delivery")
+            ok = False
+
+    return ok
+
+
+def validate_react_only_delivery() -> bool:
+    ok = True
+    forbidden_html = list(ROOT.glob("*.html")) + list(ROOT.glob("*.htm"))
+    forbidden_css = list(ROOT.glob("*.css"))
+
+    for path in sorted(forbidden_html):
+        rel = path.relative_to(ROOT).as_posix()
+        fail(f"Forbidden standalone HTML deliverable detected: {rel}")
+        ok = False
+
+    for path in sorted(forbidden_css):
+        rel = path.relative_to(ROOT).as_posix()
+        fail(f"Forbidden root-level CSS deliverable detected: {rel}")
+        ok = False
+
     return ok
 
 
@@ -128,7 +155,7 @@ def validate_recipes() -> bool:
 
 
 def main() -> int:
-    checks = [require_files(), validate_recipes()]
+    checks = [require_files(), validate_recipes(), validate_react_only_delivery()]
     if all(checks):
         print("SDS contract validation passed.")
         return 0

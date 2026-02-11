@@ -20,6 +20,7 @@ Use this checklist before considering any page/block implementation complete.
 - [ ] Uses SDS components from `src/components` (no duplicate primitives)
 - [ ] Form controls use SDS state/variant model
 - [ ] Text uses SDS text variants
+- [ ] Implementation is React-based (`.tsx`), not standalone raw `.html` page delivery
 
 ## 4) Token fidelity
 
@@ -31,6 +32,6 @@ Use this checklist before considering any page/block implementation complete.
 ## 5) Delivery gate
 
 - [ ] All checklist sections pass
-- [ ] Known gaps explicitly listed as TODO with reason
+- [ ] `knownGaps` is empty in recipe files for final delivery
 - [ ] No unresolved assumptions remain
 

@@ -5,10 +5,14 @@ alwaysApply: true
 
 # SDS Component Usage Enforcement
 
-- Reuse `src/components/*` for controls and text primitives whenever possible.
+- Reuse `src/components/*` for controls and text primitives.
 - Do not add local substitutes like `.btn`, custom input shells, or native checkbox styling if `Button`, `Input`, `Checkbox`, `Switch`, `Text` already cover the need.
 - Prefer extending SDS components with new props/variants over creating page-local duplicates.
 - Forms must be assembled from SDS form controls and state props (`default/error/disabled`, checked variants).
 - All visual decisions must consume `var(--sds-*)` tokens from `src/components/theme.css`.
 - If a page needs a missing component, add it to `src/components` with typed props and tokenized CSS first.
+- React-only delivery:
+  - Page implementations must be `*.tsx` (or `*.ts` supporting files) in React app structure.
+  - Standalone page files (`*.html`, root-level page `*.css`) are not allowed deliverables.
+  - Do not treat direct usage of SDS CSS classes in raw HTML as component usage compliance.
 

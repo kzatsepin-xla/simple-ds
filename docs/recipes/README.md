@@ -6,8 +6,14 @@ This directory stores machine-readable page/block recipes used by agents.
 
 1. Select the closest source recipe from Figma (`Composition guide`, `Sections`, `Forms`, `Examples`).
 2. Create or update a JSON recipe file that validates against `page-recipe.schema.json`.
-3. Implement using `src/components` and `var(--sds-*)` tokens.
+3. Implement in React (`.tsx`) using `src/components` and `var(--sds-*)` tokens.
 4. Run `docs/qa/sds-page-audit-checklist.md` and keep all items passing.
+5. Final recipe deliverables must keep `knownGaps` empty.
+
+## Delivery constraints
+
+- Do not deliver standalone page implementations as raw `.html` + custom root-level `.css`.
+- Do not claim SDS component compliance when only CSS class contracts are copied into static markup.
 
 ## Minimal recipe file example
 
