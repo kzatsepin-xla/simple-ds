@@ -28,6 +28,9 @@ Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma p
 ## Quality Gates
 
 - Agent operating contract: `AGENTS.md`
+- Universal page generation rule: `.cursor/rules/sds-universal-page-generation.mdc`
+- Prompt normalization schema: `docs/specs/page-spec.schema.json`
+- Recipe resolver: `scripts/resolve_recipe.py`
 - Recipe format and workflow: `docs/recipes/README.md`
 - Recipe schema: `docs/recipes/page-recipe.schema.json`
 - Mandatory page audit checklist: `docs/qa/sds-page-audit-checklist.md`

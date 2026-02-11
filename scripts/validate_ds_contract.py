@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -17,10 +18,14 @@ REQUIRED_FILES = [
     ".cursor/rules/sds-page-recipes-from-examples.mdc",
     ".cursor/rules/sds-no-assumptions-gate.mdc",
     ".cursor/rules/sds-component-usage-enforcement.mdc",
+    ".cursor/rules/sds-universal-page-generation.mdc",
     "AGENTS.md",
     "docs/qa/sds-page-audit-checklist.md",
     "docs/recipes/page-recipe.schema.json",
     "docs/recipes/README.md",
+    "docs/specs/page-spec.schema.json",
+    "docs/specs/README.md",
+    "scripts/resolve_recipe.py",
 ]
 
 
@@ -123,6 +128,44 @@ def validate_react_only_delivery() -> bool:
     return ok
 
 
+def find_page_files() -> list[Path]:
+    candidates: list[Path] = []
+    patterns = [
+        "src/pages/**/*.tsx",
+        "src/app/**/*.tsx",
+        "src/screens/**/*.tsx",
+    ]
+    for pattern in patterns:
+        candidates.extend(ROOT.glob(pattern))
+    return sorted({path for path in candidates if "src/components/" not in path.as_posix()})
+
+
+def validate_react_pages_use_ds() -> bool:
+    page_files = find_page_files()
+    if not page_files:
+        print("Validated page TSX files: 0 (no page files found; skipped)")
+        return True
+
+    ok = True
+    raw_control_pattern = re.compile(r"<\s*(button|input|select|textarea)\b", re.IGNORECASE)
+    ds_import_pattern = re.compile(r"from\s+['\"][^'\"]*components[^'\"]*['\"]")
+
+    for path in page_files:
+        rel = path.relative_to(ROOT).as_posix()
+        text = path.read_text(encoding="utf-8")
+
+        if raw_control_pattern.search(text):
+            fail(f"{rel}: raw form/control tags detected in page file; use SDS components")
+            ok = False
+
+        if not ds_import_pattern.search(text):
+            fail(f"{rel}: no components import detected; page must compose SDS components")
+            ok = False
+
+    print(f"Validated page TSX files: {len(page_files)}")
+    return ok
+
+
 def validate_recipes() -> bool:
     recipe_dir = ROOT / "docs" / "recipes"
     if not recipe_dir.exists():
@@ -155,7 +198,12 @@ def validate_recipes() -> bool:
 
 
 def main() -> int:
-    checks = [require_files(), validate_recipes(), validate_react_only_delivery()]
+    checks = [
+        require_files(),
+        validate_recipes(),
+        validate_react_only_delivery(),
+        validate_react_pages_use_ds(),
+    ]
     if all(checks):
         print("SDS contract validation passed.")
         return 0

@@ -18,10 +18,13 @@
 - [ ] Existing recipe was reused
 - [ ] New recipe added in `docs/recipes/`
 - Recipe file:
+- PageSpec file:
+- Resolver result (`scripts/resolve_recipe.py`):
 
 ### SDS compliance checklist (required)
 
 - [ ] Uses SDS components (`src/components`) instead of duplicate primitives
+- [ ] Page implementation is React (`.tsx`), no standalone `.html` + root `.css`
 - [ ] Uses `var(--sds-*)` tokens for visual values
 - [ ] Responsive behavior matches Composition/Sections recipe
 - [ ] Forms follow fieldset/state model from SDS rules

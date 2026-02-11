@@ -4,11 +4,12 @@ This directory stores machine-readable page/block recipes used by agents.
 
 ## Required workflow
 
-1. Select the closest source recipe from Figma (`Composition guide`, `Sections`, `Forms`, `Examples`).
-2. Create or update a JSON recipe file that validates against `page-recipe.schema.json`.
-3. Implement in React (`.tsx`) using `src/components` and `var(--sds-*)` tokens.
-4. Run `docs/qa/sds-page-audit-checklist.md` and keep all items passing.
-5. Final recipe deliverables must keep `knownGaps` empty.
+1. Parse prompt to `PageSpec` (`docs/specs/page-spec.schema.json`).
+2. Resolve closest recipe with `python scripts/resolve_recipe.py <page-spec.json>`.
+3. If needed, create or update a recipe JSON that validates against `page-recipe.schema.json`.
+4. Implement in React (`.tsx`) using `src/components` and `var(--sds-*)` tokens.
+5. Run `docs/qa/sds-page-audit-checklist.md` and keep all items passing.
+6. Final recipe deliverables must keep `knownGaps` empty.
 
 ## Delivery constraints
 

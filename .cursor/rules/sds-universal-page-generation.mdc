@@ -1,0 +1,19 @@
+---
+description: Universal deterministic SDS page generation flow for any prompt
+alwaysApply: true
+---
+
+# SDS Universal Page Generation
+
+- Treat any page request as a two-stage process:
+  1) normalize prompt into `PageSpec`,
+  2) resolve and apply the best page recipe.
+- `PageSpec` must include: intent, pageType, sections, platforms, dataDensity, constraints.
+- Use schema at `docs/specs/page-spec.schema.json`.
+- Resolve recipe using `scripts/resolve_recipe.py` against `docs/recipes/*.json`.
+- If best score is below threshold, create a new recipe from Figma-backed section rules before coding.
+- Implement only in React (`.tsx`) and compose with `src/components`.
+- Use `var(--sds-*)` tokens for visual decisions.
+- Run `docs/qa/sds-page-audit-checklist.md` and ensure final `knownGaps` is empty.
+- Never deliver standalone raw `.html` page outputs.
+

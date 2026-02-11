@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDS Page Spec",
+  "type": "object",
+  "required": [
+    "intent",
+    "pageType",
+    "sections",
+    "platforms",
+    "dataDensity",
+    "constraints"
+  ],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "minLength": 3
+    },
+    "pageType": {
+      "type": "string",
+      "enum": [
+        "landing",
+        "article",
+        "catalog",
+        "product",
+        "dashboard",
+        "auth",
+        "marketing",
+        "support",
+        "custom"
+      ]
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2
+      },
+      "minItems": 1
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["desktop", "tablet", "mobile"]
+      },
+      "minItems": 2
+    },
+    "dataDensity": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["a11y", "seo", "perf", "i18n"],
+      "properties": {
+        "a11y": { "type": "boolean" },
+        "seo": { "type": "boolean" },
+        "perf": { "type": "boolean" },
+        "i18n": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "figmaAnchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fileKey", "nodeId", "label"],
+        "properties": {
+          "fileKey": { "type": "string" },
+          "nodeId": { "type": "string" },
+          "label": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
