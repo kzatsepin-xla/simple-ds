@@ -1,0 +1,23 @@
+name: SDS Contract
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate SDS contract files and recipes
+        run: python scripts/validate_ds_contract.py
+

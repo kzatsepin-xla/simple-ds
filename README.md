@@ -24,3 +24,12 @@ Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma p
 - `Sections` for reusable section families and platform variants
 - `Forms` for fieldset and form assembly patterns
 - `Examples` for full-page recipe selection
+
+## Quality Gates
+
+- Agent operating contract: `AGENTS.md`
+- Recipe format and workflow: `docs/recipes/README.md`
+- Recipe schema: `docs/recipes/page-recipe.schema.json`
+- Mandatory page audit checklist: `docs/qa/sds-page-audit-checklist.md`
+- PR template enforcing SDS traceability: `.github/pull_request_template.md`
+- CI contract validator: `.github/workflows/ds-contract.yml`

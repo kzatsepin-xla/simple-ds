@@ -1,0 +1,17 @@
+---
+description: SDS zero-assumption quality gate for page/block generation
+alwaysApply: true
+---
+
+# SDS Zero-Assumption Gate
+
+- Do not invent structure when SDS has a recipe in `Composition guide`, `Sections`, `Forms`, or `Examples`.
+- Every generated page/block must declare exact Figma anchors:
+  - `fileKey`,
+  - page/canvas `nodeId`,
+  - recipe/variant node names used.
+- If `get_design_context` is unavailable, use only verifiable `metadata` facts and mark unknowns as `TODO` instead of assumptions.
+- Before finalizing, run a self-audit against `docs/qa/sds-page-audit-checklist.md`.
+- A build is invalid if any checklist item is `FAIL`.
+- If no matching recipe exists, create a new recipe doc in `docs/recipes/` first, then implement.
+

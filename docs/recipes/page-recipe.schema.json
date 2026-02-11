@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SDS Page Recipe",
+  "type": "object",
+  "required": [
+    "id",
+    "figma",
+    "platforms",
+    "sectionSequence",
+    "componentUsage",
+    "responsiveRules"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "figma": {
+      "type": "object",
+      "required": ["fileKey", "canvasNodeId", "recipeNodes"],
+      "properties": {
+        "fileKey": { "type": "string" },
+        "canvasNodeId": { "type": "string" },
+        "recipeNodes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "platforms": {
+      "type": "array",
+      "items": { "enum": ["desktop", "tablet", "mobile"] },
+      "minItems": 2
+    },
+    "sectionSequence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "componentUsage": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "responsiveRules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "knownGaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}
+
