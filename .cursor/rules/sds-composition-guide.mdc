@@ -1,0 +1,30 @@
+---
+description: SDS composition grid and responsive layout rules from Figma Composition guide
+alwaysApply: true
+---
+
+# SDS Composition Guide Rules
+
+Source Figma page: `Composition guide` (`83:32628`).
+
+- Use a container-first layout with explicit content width per platform:
+  - Desktop content width `1200` (`562:5158`), internal gutter `24` each side.
+  - Tablet content width `768` (`562:13894`), internal gutter `24` each side.
+  - Mobile content width `375` (`562:13944`), internal gutter `24` each side.
+- Treat row recipes as semantic width tokens from the guide:
+  - `Full`, `Major`, `Half`, `Minor`.
+- Desktop row math (`562:5090`):
+  - Row content width `1152`.
+  - `Major=848`, `Minor=240`, inter-cell gap `64`.
+  - `Half=544 + 544`, inter-cell gap `64`.
+  - Row-to-row vertical rhythm: `70` height blocks with `64` gap.
+- Tablet row math (`562:13895`):
+  - Row content width `720`.
+  - Two-column: `336 + 336` with `48` gap.
+  - Three-column: `208 + 208 + 208` with `48` gaps.
+- Mobile rule (`562:13945`):
+  - Single column only (`327` content width).
+  - Multi-column desktop/tablet rows collapse into vertical stacked cells.
+- All spacing, radius, border, and typography values must map to `var(--sds-*)`.
+- Never hardcode breakpoint behavior that contradicts the composition guide.
+

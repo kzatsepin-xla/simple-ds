@@ -15,3 +15,12 @@ Simple DS is a React component library generated from the SDS Figma UI kit.
 - Text
 - Checkbox
 - Switch
+
+## AI Layout Rules
+
+Cursor rules are stored in `.cursor/rules/` and are derived from the SDS Figma pages:
+
+- `Composition guide` for responsive grid composition
+- `Sections` for reusable section families and platform variants
+- `Forms` for fieldset and form assembly patterns
+- `Examples` for full-page recipe selection

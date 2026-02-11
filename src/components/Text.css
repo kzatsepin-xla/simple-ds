@@ -1,0 +1,83 @@
+.sds-text {
+  margin: 0;
+  color: var(--sds-color-text-default-default);
+}
+
+.sds-text--body {
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-medium);
+  font-weight: var(--sds-typography-body-font-weight-regular);
+  line-height: 1.4;
+}
+
+.sds-text--strong {
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-medium);
+  font-weight: var(--sds-typography-body-font-weight-strong);
+  line-height: 1.4;
+}
+
+.sds-text--emphasis {
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-medium);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.sds-text--link {
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-medium);
+  color: var(--sds-color-text-default-default);
+  text-decoration: underline;
+}
+
+.sds-text--small {
+  font-family: var(--sds-typography-body-font-family);
+  font-size: var(--sds-typography-body-size-small);
+  line-height: 1.4;
+}
+
+.sds-text--code {
+  font-family: var(--sds-typography-code-font-family);
+  font-size: var(--sds-typography-code-size-base);
+  font-weight: var(--sds-typography-code-font-weight);
+  line-height: 1.3;
+}
+
+.sds-text--heading {
+  font-family: var(--sds-typography-heading-font-family);
+  font-size: var(--sds-typography-heading-size-base);
+  font-weight: var(--sds-typography-heading-font-weight);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.sds-text--subheading {
+  font-family: var(--sds-typography-subheading-font-family);
+  font-size: var(--sds-typography-subheading-size-medium);
+  font-weight: var(--sds-typography-subheading-font-weight);
+  line-height: 1.2;
+}
+
+.sds-text--subtitle {
+  font-family: var(--sds-typography-subtitle-font-family);
+  font-size: var(--sds-typography-subtitle-size-base);
+  font-weight: var(--sds-typography-subtitle-font-weight);
+  line-height: 1.2;
+}
+
+.sds-text--titlePage {
+  font-family: var(--sds-typography-title-page-font-family);
+  font-size: var(--sds-typography-title-page-size-base);
+  font-weight: var(--sds-typography-title-page-font-weight);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.sds-text--titleHero {
+  font-family: var(--sds-typography-title-hero-font-family);
+  font-size: var(--sds-typography-title-hero-size);
+  font-weight: var(--sds-typography-title-hero-font-weight);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}

@@ -1,0 +1,30 @@
+---
+description: SDS forms and block composition rules from Figma Forms and Composition pages
+alwaysApply: true
+---
+
+# SDS Forms And Blocks Rules
+
+Source Figma pages: `Forms` (`370:5433`) and `Composition guide` form patterns (`69:17183`).
+
+- Reuse canonical form recipes before creating a new form:
+  - `Form Shipping` (`197:23153`)
+  - `Form Contact` (`197:19741`)
+  - `Form Log In` (`197:19740`)
+  - `Form Register` (`197:19742`)
+  - `Form Forgot Password` (`197:19744`)
+  - `Form Newsletter` (`197:19743`)
+- Model forms as `Fieldset` + ordered rows, not flat input lists.
+- Fieldset-level structure from composition patterns (`69:17183`):
+  - Main fieldset width token `300`.
+  - Mixed row archetypes: single field row, label+field row, checkbox row, actions row.
+  - Inline split row pattern exists for newsletter (`204 + 80` inside width `300`).
+- Preserve vertical flow:
+  - Title/intro block,
+  - input rows,
+  - consent row (checkbox + text),
+  - primary action row.
+- Use existing components for form internals (`Input`, `Checkbox`, `Switch`, `Button`, `Text`) and never duplicate control primitives.
+- Validation UI must be represented through component states (`default/error/disabled`) rather than custom one-off styles.
+- All distances, typography, colors, and border radii must come from `var(--sds-*)`.
+

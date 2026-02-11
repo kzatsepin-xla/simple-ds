@@ -1,0 +1,30 @@
+---
+description: SDS section/page assembly recipes from Figma Sections page
+alwaysApply: true
+---
+
+# SDS Sections Assembly Rules
+
+Source Figma page: `Sections` (`348:13000`).
+
+- Build page blocks from section families, not ad-hoc wrappers:
+  - Header (`348:13003`) and Footer (`348:13002`).
+  - Hero Sections (`78:25151`).
+  - Panel Sections (`373:12778`).
+  - Card Grid Sections (`78:25153`).
+  - Page Sections (`373:12938`).
+- Every section recipe must support explicit platform variants:
+  - `Platform=Desktop` (`1200` wide pattern).
+  - `Platform=Mobile` (`375` wide pattern).
+- For headers, include stateful variant handling:
+  - `Platform=Mobile, State=Default` and `State=Open`.
+- For hero/panel/card/page sections, preserve section intent from naming:
+  - Examples: `Hero Basic`, `Hero Actions`, `Hero Form`, `Panel Image Content Reverse`, `Card Grid Pricing`, `Page Product Results`.
+- Section-level composition must follow this order:
+  1) choose section family,
+  2) pick platform variant,
+  3) place content primitives (text/cards/forms/media),
+  4) apply tokens (`--sds-*`) and responsive collapse behavior.
+- Do not create one-off section layouts when an existing section recipe exists in this page.
+- When generating full pages, compose them from these section recipes before adding custom overrides.
+

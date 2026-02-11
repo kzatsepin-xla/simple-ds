@@ -1,0 +1,24 @@
+---
+description: SDS full-page recipe selection using Figma Examples page
+alwaysApply: true
+---
+
+# SDS Page Recipes From Examples
+
+Source Figma page: `Examples` (`7641:2142`).
+
+- For full-page generation, start from the closest canonical example:
+  - `Examples / Home Page`, `Examples/About`, `Examples/Contact Us`, `Examples/Pricing`,
+    `Examples/Waitlist`, `Examples/Landing Page`, `Examples/Article`,
+    `Examples/Shop`, `Examples/Product Detail Page`, `Examples/Portfolio`, `Examples/AI Chat`.
+- Each example includes both `Platform=Desktop` and `Platform=Mobile`.
+- Build implementation as a sequence of known section recipes (Header/Hero/Panel/CardGrid/Page/Footer),
+  not as a monolithic custom page component.
+- Keep platform parity:
+  - Desktop and mobile should match section intent, order, and state behavior.
+- Prefer composing from existing section and form recipes first; introduce new recipe only if no close example exists.
+- Any new page recipe must be documented with:
+  - chosen example anchor,
+  - section sequence,
+  - responsive mapping rules.
+
