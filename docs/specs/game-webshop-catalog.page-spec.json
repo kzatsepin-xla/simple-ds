@@ -1,0 +1,30 @@
+{
+  "intent": "Create a catalog page for a game web shop with clear filters and product cards.",
+  "pageType": "catalog",
+  "sections": ["Header", "Hero", "Page Product Results", "Card Grid", "Footer"],
+  "platforms": ["desktop", "mobile"],
+  "dataDensity": "high",
+  "constraints": {
+    "a11y": true,
+    "seo": true,
+    "perf": true,
+    "i18n": true
+  },
+  "figmaAnchors": [
+    {
+      "fileKey": "RBJcfVy3QAUyfxSVRqPI1V",
+      "nodeId": "7641:2142",
+      "label": "Examples page canvas"
+    },
+    {
+      "fileKey": "RBJcfVy3QAUyfxSVRqPI1V",
+      "nodeId": "348:13000",
+      "label": "Sections page canvas"
+    },
+    {
+      "fileKey": "RBJcfVy3QAUyfxSVRqPI1V",
+      "nodeId": "83:32628",
+      "label": "Composition guide canvas"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "catalog.game-webshop",
+  "figma": {
+    "fileKey": "RBJcfVy3QAUyfxSVRqPI1V",
+    "canvasNodeId": "7641:2142",
+    "recipeNodes": [
+      "Examples/Shop",
+      "Sections/Header Platform=Desktop",
+      "Sections/Header Platform=Mobile State=Default",
+      "Sections/Header Platform=Mobile State=Open",
+      "Sections/Hero Basic Platform=Desktop",
+      "Sections/Hero Basic Platform=Mobile",
+      "Sections/Page Product Results Platform=Desktop",
+      "Sections/Page Product Results Platform=Mobile",
+      "Sections/Card Grid Platform=Desktop",
+      "Sections/Card Grid Platform=Mobile",
+      "Sections/Footer Platform=Desktop",
+      "Sections/Footer Platform=Mobile",
+      "Composition guide/Desktop content width 1200",
+      "Composition guide/Tablet content width 768",
+      "Composition guide/Mobile content width 375"
+    ]
+  },
+  "platforms": ["desktop", "mobile"],
+  "sectionSequence": ["Header", "Hero", "Page Product Results", "Card Grid", "Footer"],
+  "componentUsage": ["Button", "Input", "Checkbox", "Switch", "Text"],
+  "responsiveRules": [
+    "desktop-container-1200-with-24-gutters",
+    "desktop-row-content-width-1152-major-848-minor-240-gap-64",
+    "tablet-container-768-with-row-width-720-two-column-336-gap-48",
+    "mobile-container-375-single-column-content-327",
+    "mobile-header-supports-default-and-open-states"
+  ],
+  "knownGaps": []
+}
